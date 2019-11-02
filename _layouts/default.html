@@ -40,14 +40,14 @@
       <!-- lista de asiganturas -->
       <ul> 
         
-        <p>{{site.github.repository_name}}</p>
+      
         
         {% for asignatura in site.asignaturas %}
 
           
 
 
-          <li><a href="tutorialesDAW/{{asignatura.url}}">{{asignatura.name}}</a></li>
+          <li><a href="{{asignatura.url}}">{{asignatura.name}}</a></li>
           
         {% endfor %}
         </ul>
