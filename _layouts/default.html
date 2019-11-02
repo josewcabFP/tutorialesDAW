@@ -39,8 +39,17 @@
       
       <!-- lista de asiganturas -->
       <ul> 
+        
         {% for asignatura in site.asignaturas %}
+
+          {% if site.github.is_project_page %}
+          <li><a href="{{asignatura.url | prepend: site.github.repository_name}}"></a></li>
+         
+          {% else %}
+
+
           <li><a href=".{{asignatura.url}}">{{asignatura.name}}</a></li>
+          {% endif %}
         {% endfor %}
         </ul>
 
