@@ -8,3 +8,5 @@ collections:
   asignaturas:
     output: true
     output_ext: .html
+    permalink: /asignaturas/:path/
+  
