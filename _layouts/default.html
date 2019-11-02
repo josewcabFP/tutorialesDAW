@@ -44,7 +44,7 @@
         {% for asignatura in site.asignaturas %}
 
           {% if site.github.is_project_page %}
-          <li><a href="{{asignatura.url | prepend: site.github.repository_name}}"></a></li>
+          <li><a href="{{asignatura.url | prepend: site.github.repository_name}}">{{asignatura.name}}</a></li>
          
           {% else %}
 
