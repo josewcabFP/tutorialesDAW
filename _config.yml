@@ -4,6 +4,8 @@ show_downloads: true
 google_analytics:
 theme: jekyll-theme-cayman
 
+markdown: kramdown
+
 collections:
   asignaturas:
     output: true
