@@ -10,5 +10,5 @@ collections:
   asignaturas:
     output: true
     output_ext: .html
-    permalink: /asignaturas/:name
+    #permalink: /asignaturas/:name
   
