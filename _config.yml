@@ -10,5 +10,5 @@ collections:
   asignaturas:
     output: true
     output_ext: .html
-    permalink: tutorialesDAW/asignaturas/:name.html
+    #permalink: tutorialesDAW/asignaturas/:name.html
   
