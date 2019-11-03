@@ -1,0 +1,221 @@
+I"*<h1 id="guia-de-configuración-de-cliente-ssh-para-conexión-a-github">Guia de configuración de cliente SSH para conexión a Github</h1>
+
+<blockquote>
+  <p>Esta guía esta hecha para la conexión desde un ordenador con un sistema operativo linux. Windows no tiene las librerias SSH por defecto y necesita programas como <strong>Putty</strong>.</p>
+</blockquote>
+
+<p>En esta guía veremos como crear una clave SSH y configurar un agente SSH para nuestras conexiones remotas.</p>
+
+<h2 id="concepto-de-clave-pública-y-privada">Concepto de clave pública y privada</h2>
+
+<p>Con la masificación de las telecomunicaciones, surge la necesidad de autenticar nuestra identidad de alguna manera, para poder llevar a cabo transacciones seguras en la red.</p>
+
+<p>Sin embargo las credenciales comunes (usuario y contraseña) pueden ser bastante vulnerables, ademas de no autentificar nuestra identidad ante un servidor.</p>
+
+<p>En vista de esta necesidad, se usan métodos criptológicos para fortalecer nuestras credenciales. Un claro ejemplo de estos métodos son el sistema de clave pública y clave privada (criptografía asimetrica).</p>
+
+<hr />
+
+<p><img src="/tutoriales_3//assets/recursos/ssh_git/CriptografiaAsimetrica.png" alt="clave asimetrica" /></p>
+
+<ol>
+  <li>Ana redacta un mensaje.</li>
+  <li>Ana cifra el mensaje con la <strong>clave pública</strong> de David.</li>
+  <li>Ana envía el mensaje cifrado a David a través de internet, ya sea por correo electrónico, mensajería instantánea o cualquier otro medio.</li>
+  <li>David recibe el mensaje cifrado y lo descifra con su <strong>clave privada</strong>.</li>
+  <li>David ya puede leer el mensaje original que le mandó Ana.</li>
+</ol>
+
+<hr />
+
+<p>Ambas claves pueden ser cadenas de caracteres muy largas (dependiendo de lo especificado al crearlas) por lo que es muy difícil decifrarlas.</p>
+
+<blockquote>
+  <p>Debemos tener en cuenta <strong>solo se compartira la clave pública</strong> ya que la <strong>clave privada</strong> solo debemos tenerla nosotros.</p>
+</blockquote>
+
+<h2 id="secure-shell-ssh">Secure Shell (SSH)</h2>
+
+<p>Secure Shell es un protocolo de comunicaciones, cuya función es el acceso remoto a un servidor, mediante el uso de un canal cifrado de comunicación.</p>
+
+<p>La conexión se realiza mediante credenciales (usuario y contraseña o claves SSH).</p>
+
+<p>Mediante este sistema podemos conectarnos a un terminal y usarlo como si estuvieramos en él.</p>
+
+<h2 id="conexión-con-github">Conexión con Github</h2>
+
+<p>Github permite las conexiones SSH para los repositorios remotos.</p>
+
+<blockquote>
+  <p>Recordemos que hacer un <strong>push</strong> o un <strong>pull</strong> requiere un conexión con el repositorio, por lo que siempre nos solicitará las credenciales para realizar cambios/copias en el repositorio remoto.</p>
+</blockquote>
+
+<p>Utilizando claves SSH podemos realizar la conexión mediante el agente SSH en lugar de escribir nuestro usuario y contraseña en cada visita al repositorio.</p>
+
+<h3 id="comprobando-la-existencia-de-claves-ssh">Comprobando la existencia de claves SSH</h3>
+
+<ol>
+  <li>
+    <p>Abrimos el terminal y escribimos el comando</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">ls</span> <span class="nt">-la</span> ~/.ssh       
+    
+ <span class="c"># listamos el contenido de la carpeta .ssh</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Si la carpeta no contiene nada, significa que no poseemos claves SSH.</p>
+  </li>
+</ol>
+
+<h3 id="creación-de-claves-ssh">Creación de claves SSH</h3>
+
+<ol>
+  <li>
+    <p>Escribimos el siguiente comando en la terminal</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"tu_email@ejemplo.com"</span>
+
+ <span class="c"># El comando ssh-keygen nos permite crear claves</span>
+ <span class="c"># - La opción [-t] permite especificar el algoritmo de cifrado.</span>
+ <span class="c"># - La opción [-b] permite especificar el tamaño de la clave.</span>
+ <span class="c"># - La opción [-C] permite especificar un comentario para una mejor identificación de la clave.</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Se generará la clave y nos preguntará la ubicación para el guardado de la misma</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Enter a file in wich to save the key (/home/you/.ssh/id_rsa): [Press enter]
+</code></pre></div>    </div>
+
+    <p>Debemos aceptar la ruta por defecto para evitar problemas, asi que presionaremos enter sin introducir ningun argumento.</p>
+  </li>
+  <li>
+    <p>Se nos pedirá una contraseña para el uso de nuestra clave SSH , es decir, esta contraseña se nos solicitará cada vez que que nuestra clave SSH sea usada. También es posible no usar ninguna contraseña pero, de esta manera, cualquier persona podría usar nuestra clave SSH.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Enter passphrase (empty for no passphrase): [Type a passphrase]
+
+ Enter same passphrase again: [Type passphrase again]
+</code></pre></div>    </div>
+    <p>Una vez terminado este proceso ya tendremos creada la clave SSH.</p>
+  </li>
+</ol>
+
+<h3 id="agregando-la-clave-privada-ssh-al-agente-ssh">Agregando la clave privada SSH al agente SSH</h3>
+
+<ol>
+  <li>
+    <p>Primero ejecutamos el agente SSH en segundo plano</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>ssh-agent <span class="nt">-s</span><span class="si">)</span><span class="s2">"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Agregamos el la clave al agente SSH</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh-add ~/.shh/id_rsa
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="agregando-la-clave-publica-ssh-a-github">Agregando la clave publica SSH a Github</h3>
+
+<ol>
+  <li>
+    <p>Primero necesitamos copiar el contenido de la clave pública, para lo cual usaremos el comando <strong>xclip</strong>, si no lo tenemos debemos instalar el paquete correspondiente.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get <span class="nb">install </span>xclip 
+ <span class="c"># Este programa permite copiar en el portapapeles el contendio de un archivo (equivale a un CTRL + C).</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Copiaremos el contenido de la clave.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> xclip <span class="nt">-sel</span> clip &lt; ~/.ssh/id_rsa.pub
+</code></pre></div>    </div>
+    <blockquote>
+      <p>El archivo debe ser el terminado en <strong>.pub</strong>, que es el de la clave pública.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>A continuación iremos a nuestra cuenta de Github e iremos al menu de ajustes de la cuenta (en la parte superior derecha).</p>
+
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH1.png" alt="Github settings" /></p>
+  </li>
+  <li>
+    <p>En el panel de ajustes buscaremos <strong>SSH and GPG keys</strong>.</p>
+
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH2.png" alt="Github ssh &amp; gpg keys" /></p>
+  </li>
+  <li>
+    <p>Daremos clic a <strong>new SSH key</strong>.</p>
+
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH3.png" alt="Github new key" /></p>
+  </li>
+  <li>
+    <p>En el titulo pondremos algo identificativo para nuestra clave SSH.</p>
+  </li>
+  <li>
+    <p>Pegaremos la clave SSH en el campo de clave (key)</p>
+
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH4.png" alt="Github key field" /></p>
+  </li>
+  <li>
+    <p>Daremos a <strong>Add SSH key</strong></p>
+
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH5.png" alt="Github agree" /></p>
+  </li>
+  <li>
+    <p>Github nos solicitará logear para aplicar la clave.</p>
+
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH6.png" alt="Github confirm" /></p>
+  </li>
+  <li>
+    <p>Comprobamos la conexión SSH</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-T</span> git@github.com
+</code></pre></div>    </div>
+    <p>Nos preguntara si deseamos la conexión con esta clave</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Are you sure you want to continue connecting (yes/no)?
+</code></pre></div>    </div>
+
+    <p>Escribiremos “<strong>yes</strong>” y nos confirmará la conexión saludandonos.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi [username]! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="conexión-ssh-con-github">Conexión SSH con Github</h3>
+
+<p>De ahora en adelante cada conexión con el repositorio remoto se hara con la clave SSH.</p>
+
+<ol>
+  <li>
+    <p>Primero debemos saber cual es la dirección para conexiones SSH con el repositorio, por lo que en nuestra cuenta de Github buscaremos el repositorio y en la opción de <strong>Clone or download</strong>, daremos a <strong>Use SSH</strong></p>
+
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/use_ssh.png" alt="Use SSH" /></p>
+  </li>
+  <li>
+    <p>Copiaremos la dirección que nos da para la conexión SSH.</p>
+
+    <p><img src="recursos/ssh_git/linkGithub.png" alt="link SSH" /></p>
+  </li>
+  <li>
+    <p>Usaremos el link con el comando <strong>remote</strong> de <em>git</em>.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git remote add <span class="o">[</span>nombre para repositorio remoto] <span class="o">[</span><span class="nb">link </span>conexión SSH] <span class="c"># Agregamos la dirección del repositorio.</span>
+
+ git remote <span class="nt">-v</span> <span class="c"># Comprobamos que se ha agregado correctamente.</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>A partir de ahora para cualquier <strong>push</strong> o <strong>pull</strong> ya no nos pedirá autenticarnos con el usuario y contraseña.</p>
+
+<blockquote>
+  <p>Podemos utilizar nuestro par de claves SSH (pública y privada) en otro ordenador, simplemente copiandolas de la carpeta  <code class="highlighter-rouge">~/.ssh</code> a la misma ubicación en el otro ordenador.</p>
+</blockquote>
+
+:ET

@@ -20,17 +20,17 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   </head>
   <body>
-    <a id="skip-to-content" href="#content">Skip to the content.</a>
+    <!-- <a id="skip-to-content" href="#content">Skip to the content.</a> -->
 
     <header class="page-header" role="banner">
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+      <!-- <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2> -->
       {% if site.github.is_project_page %}
-        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+        <!-- <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a> -->
       {% endif %}
       {% if site.show_downloads %}
-        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+        <!-- <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a> -->
       {% endif %}
     </header>
 
@@ -39,8 +39,17 @@
       
       <!-- lista de asiganturas -->
       <ul> 
+
+        <!-- Tuve muchos problemas antes de llegar a la solución del baseurl en el archivo _config.yml, ya
+        que cuando hacia un prepend con el nombre del repositorio a la direccion del archivo github
+        me hacia una copia y pegaba 2 veces el repositorio.
+        Para que corra en github el baseurl debe ser el nombre del repositorio!
+        Con el baseurl se soluciona ese problema ya que añadirlo de esta manera github no me genera ninguna
+        copia. El unico inconveniente es que ahora para probarlo en local el comando es:
+        "bundle exec jekyll serve --baseurl '/tutoriales_3/' o el nombre de la carpeta contenedora del proyecto -->
+        
         {% for asignatura in site.asignaturas %}
-          <li><a href="{{asignatura.url}}">{{asignatura.name}}</a></li>
+          <li><a href="{{site.baseurl}}{{asignatura.url}}">{{asignatura.name}}</a></li>
         {% endfor %}
         </ul>
 
