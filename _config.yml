@@ -13,6 +13,6 @@ collections:
     output_ext: .html
     #permalink: ./asignaturas/:name.html
 
-baseurl: tutorialesDAW/
+baseurl: tutorialesDAW
 
 
