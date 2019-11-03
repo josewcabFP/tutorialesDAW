@@ -11,7 +11,7 @@ collections:
   asignaturas:
     output: true
     output_ext: .html
-    #permalink: ./asignaturas/:name.html
+    permalink: ./asignaturas/:name.html
 
 baseurl: tutorialesDAW
 
