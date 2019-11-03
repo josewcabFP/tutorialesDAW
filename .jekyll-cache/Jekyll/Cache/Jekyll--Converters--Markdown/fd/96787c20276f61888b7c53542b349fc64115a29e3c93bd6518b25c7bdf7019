@@ -1,4 +1,4 @@
-I"*<h1 id="guia-de-configuración-de-cliente-ssh-para-conexión-a-github">Guia de configuración de cliente SSH para conexión a Github</h1>
+I"�)<h1 id="introducción">Introducción</h1>
 
 <blockquote>
   <p>Esta guía esta hecha para la conexión desde un ordenador con un sistema operativo linux. Windows no tiene las librerias SSH por defecto y necesita programas como <strong>Putty</strong>.</p>
@@ -200,7 +200,7 @@
   <li>
     <p>Copiaremos la dirección que nos da para la conexión SSH.</p>
 
-    <p><img src="recursos/ssh_git/linkGithub.png" alt="link SSH" /></p>
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/linkGithub.png" alt="link SSH" /></p>
   </li>
   <li>
     <p>Usaremos el link con el comando <strong>remote</strong> de <em>git</em>.</p>

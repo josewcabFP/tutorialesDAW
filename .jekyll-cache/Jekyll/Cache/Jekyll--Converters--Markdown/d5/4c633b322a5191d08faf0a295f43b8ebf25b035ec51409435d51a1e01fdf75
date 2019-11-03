@@ -1,0 +1,290 @@
+I"V<h1 id="introducción">Introducción</h1>
+
+<p>En la programación orientada a objetos, tenemos los como base fundamental los conceptos de objetos y clases. Ambos conceptos estan muy relacionados ya que un objeto no es mas que la representación de una clase.</p>
+
+<h2 id="usemos-un-ejemplo-para-entender-mejor-la-idea">Usemos un ejemplo para entender mejor la idea</h2>
+
+<p>Supongamos una clase como el plano de un coche</p>
+
+<p><img src="recursos/java_objetos/car_bluePrint.png" width="350" /></p>
+
+<p>El plano se comporta como una imagen conceptual de lo que será el coche, informáticamente hablando, estamos en un <strong>nivel de abstraccion alto</strong> debido a que, cosas como el color y la marca, no las tenemos en cuenta en este momento. Lo que si consideramos es que, independientemente de las caracteristicas físicas que pueda tener el coche, todos comparten <strong>funciones</strong> básicas, como por ejemplo, el que hecho de que pueda arrancar, avanzar, retroceder, etc.</p>
+
+<p>Una vez tenemos clara la imagen de un coche, podemos proceder a fabricar uno ( o varios ), cada uno con características diferentes, pero <strong>sin dejar de ser coches</strong></p>
+
+<p>Podriamos entonces fabricar un <em>Porshe Rojo</em></p>
+
+<p><img src="recursos/java_objetos/deportivo_rojo.jpg" width="350" /></p>
+
+<p>O bien fabricar un <em>Honda deportivo Blanco</em></p>
+
+<p><img src="recursos/java_objetos/deportivo_blanco.jpg" width="350" /></p>
+
+<p>Entonces, ahora podemos entender al <em>plano del coche</em> como la <strong>clase coche</strong> y al <em>Porshe rojo</em> como un <strong>objeto de la clase coche</strong></p>
+
+<blockquote>
+  <p>Los objetos tambien son llamados <strong>instancias</strong> en algunos casos pero vienen a ser lo mismo.</p>
+</blockquote>
+
+<h2 id="concepto-aplicado-a-java">Concepto aplicado a Java</h2>
+
+<p>Java es un lenguaje de programación orientado a objetos, quiere decir que en este lenguaje, partiendo de una <strong>clase</strong> crearemos los <strong>objetos</strong> necesarios o bien crearemos <strong>nuestras clases propias</strong> para crear objetos que se <strong>ajusten a nuestras necesidades.</strong></p>
+
+<h3 id="clases-en-java">Clases en Java</h3>
+<hr />
+
+<p>Como ya hemos visto las clases son como la <strong>plantilla</strong> de la cual parten los objetos.</p>
+
+<p>Las clases en Java tienen 2 zonas de código muy diferenciadas. Esta la zona de <strong>atributos</strong> del objeto, y la zona de <strong>métodos</strong> de objeto.</p>
+
+<p>En la primera se declaran los atributos que poseera dicho objeto, y es en esta parte, en la que los objetos pueden <strong>diferenciarse unos de otros</strong>, ya que cada uno tendrá sus propios atributos como vimos con los coches.</p>
+
+<p>En la segunda se declaran métodos que tendrá el objeto, todos los objetos creados a partir de esta clase compartirán los mismos métodos, debido a esto, es que pueden identificarse como objetos de la misma clase.</p>
+
+<h3 id="palabra-reservada-this">Palabra reservada this</h3>
+<hr />
+
+<p>La palabra reservada <strong>this</strong> sirve para referenciar al objeto en si mismo (tambien podemos no usarla, pero no es una buena práctica.</p>
+
+<p>Usando <strong>this</strong> podemos referenciar a los atributos de la clase de una forma <strong>clara</strong> y asi evitar confusiones con otras variables que podrían tener el mismo nombre que los atributos.</p>
+
+<h3 id="funciones-void-y-funciones-con-return">Funciones void y funciones con return</h3>
+<hr />
+
+<p>En Java tenemos dos tipos de funciones, las que no devuelven nada y solo efectúan cambios a nivel de código y las que devuelven una variable para ser usada posteriormente.</p>
+
+<ul>
+  <li>
+    <p>Funciones <strong>void</strong> : Son las funciones que no devuelven nada, como su nombre dice son <strong>vacías</strong>, su sintaxis es:</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">nombreM</span><span class="err">é</span><span class="n">todo</span><span class="o">&gt;(){</span>
+      <span class="c1">// código</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Funciones con <strong>return</strong> : Son funciones que devuelven valores para su uso en otras partes de nuestro código, un claro ejemplo de esto es la función <code class="highlighter-rouge">Math.random();</code> que devuelve un número aleatorio, que podremos usar como dato para otras funciones, su sintaxis es:</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="o">&lt;</span><span class="n">tipoRetorno</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">nombreM</span><span class="err">é</span><span class="n">todo</span><span class="o">&gt;(){</span>
+      <span class="c1">// código</span>
+
+      <span class="k">return</span> <span class="o">&lt;</span><span class="n">variableRetorno</span><span class="o">&gt;;</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+    <p>Debemos especificar el tipo de dato que devolvera (int, String, double, etc) en la cabecera de la función (tipoRetorno).</p>
+  </li>
+</ul>
+
+<p><strong>Ahora crearemos la clase coche para ilustrar mejor la idea.</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Coche</span><span class="o">{</span>
+
+    <span class="c1">//Zona de declaración de atributos</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">marca</span><span class="o">;</span> <span class="c1">// Los atributos no se inicializan en la clase.</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">color</span><span class="o">;</span>
+
+    <span class="c1">//Zona de declaracón de métodos</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">arrancar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche ha arrancado"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">avanzar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche avanza a una velocidad constante"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">acelerar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche acelera"</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apagar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche se ha apagado"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">//Usamos la palabra reservada this para devolver el color</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">dimeColor</span><span class="o">(){</span> <span class="c1">// El método/función devuelve un String</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">;</span>  
+    <span class="o">}</span>
+    
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="objetos-en-java">Objetos en Java</h3>
+<hr />
+<p>Teniendo la clase coche creada, tendremos dos opciones para crear un objeto de esta clase:</p>
+
+<ul>
+  <li>
+    <p>Podemos crear un clase main dentro de la clase coche:</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+
+  <span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>Java utiliza el método <strong>main</strong> como función principal de ejecución, es decir, que cuando ejecutamos nuestro código, Java buscará el método main para proceder de acuerdo al código que contenga.</p>
+  </li>
+  <li>
+    <p>O podemos crear <em>otro</em> archivo <strong>.java</strong> que solo contenga el método <strong>main</strong> e <strong>importar</strong> la clase coche en este archivo.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">coche</span><span class="o">;</span>
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>Si no importamos la clase cuando intentamos crear un objeto de la misma en un archivo <code class="highlighter-rouge">.java</code> difenrente al que contiene la clase, nos dara un <strong>error</strong>, ya que, no Java no sabe dónde se encuentra dicha clase.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>Como vemos, en cualquier caso necesitaremos el método main para ejecutar nuestro código.</p>
+
+<p>En este caso optaremos por crear el método main dentro de la clase <strong>coche</strong>.</p>
+
+<p>Para la creación de un objeto, utilizaremos la paralabra reservada <strong>new</strong>, con esto, crearemos el espacio en memoria para el objeto:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">nombreClase</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">nombreVariable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="k">new</span> <span class="o">&lt;</span><span class="n">nombreClase</span><span class="o">&gt;();</span>
+</code></pre></div></div>
+
+<p>A continuación asignaremos los atributos para el objeto, utilizando la siguiente sintaxis:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">nombreVaribale</span><span class="o">&gt;.&lt;</span><span class="n">nombreAtributo</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">valor</span><span class="o">&gt;;</span>
+</code></pre></div></div>
+
+<p>Para utilizar los métodos de la clase, usaremos la siguiente sintaxis:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">nombreVariable</span><span class="o">&gt;.&lt;</span><span class="n">nombreM</span><span class="err">é</span><span class="n">todo</span><span class="o">&gt;();</span>
+</code></pre></div></div>
+<p>Ampliaremos entonces el ejemplo de coche para entender mejor el concepto:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Coche</span><span class="o">{</span>
+
+    <span class="c1">//Zona de declaración de atributos</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">marca</span><span class="o">;</span> <span class="c1">// Los atributos no se inicializan en la clase.</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">color</span><span class="o">;</span>
+
+    <span class="c1">//Zona de declaracón de métodos</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">arrancar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche ha arrancado"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">avanzar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche avanza a una velocidad constante"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">acelerar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche acelera"</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apagar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche se ha apagado"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">dimeColor</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// MÉTODO MAIN</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="nc">Coche</span> <span class="n">coche1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coche</span><span class="o">();</span> <span class="c1">//Creamos el objeto</span>
+
+        <span class="c1">//definimos atributos</span>
+        <span class="n">coche1</span><span class="o">.</span><span class="na">marca</span> <span class="o">=</span> <span class="s">"Porshe"</span><span class="o">;</span>
+        <span class="n">coche1</span><span class="o">.</span><span class="na">color</span> <span class="o">=</span> <span class="s">"rojo"</span><span class="o">;</span>
+
+        <span class="c1">//Utilizamos los métodos</span>
+
+        <span class="n">coche1</span><span class="o">.</span><span class="na">arrancar</span><span class="o">();</span> <span class="c1">//Este método nos mostrará en pantalla un mensaje.</span>
+        <span class="n">coche1</span><span class="o">.</span><span class="na">avanzar</span><span class="o">();</span> <span class="c1">//Este método nos mostrará en pantalla un mensaje.</span>
+
+    <span class="o">}</span>
+    
+<span class="o">}</span>
+</code></pre></div></div>
+<h3 id="constructores-en-java">Constructores en Java</h3>
+<hr />
+
+<p>Inicializar los atributos de la forma vista anteriormente no es una buena práctica, ya que para esto Java nos permite la creación de un <strong>método constructor</strong>, con el cual definiremos los atributos en el momento de la creación del objeto.</p>
+
+<p>El constructor recibe como parametros de función los datos para los atributos:</p>
+
+<blockquote>
+  <p>IMPORTANTE: El método <strong>constructor</strong> debe tener <strong>el mismo nombre que la clase</strong>.</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="o">&lt;</span><span class="n">nombreClase</span><span class="o">&gt;(&lt;</span><span class="n">tipo</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">nombreVariable1</span><span class="o">&gt;,</span> <span class="o">&lt;</span><span class="n">tipo</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">nombreVariable2</span><span class="o">&gt;,</span> <span class="o">...){</span>
+    <span class="k">this</span><span class="o">.&lt;</span><span class="n">nombreAtributo1</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">nombreVariable1</span><span class="o">&gt;;</span>
+    <span class="k">this</span><span class="o">.&lt;</span><span class="n">nombreAtributo2</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">nombreVaribale2</span><span class="o">&gt;;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Aplicando esto a nuestra clase coche, el código quedaría de esta forma:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Coche</span><span class="o">{</span>
+
+    <span class="c1">//Zona de declaración de atributos</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">marca</span><span class="o">;</span> <span class="c1">// Los atributos no se inicializan en la clase.</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">color</span><span class="o">;</span>
+
+
+    <span class="c1">// CONSTRUCTOR</span>
+
+    <span class="kd">public</span> <span class="nf">Coche</span><span class="o">(</span><span class="nc">String</span> <span class="n">var1</span><span class="o">,</span> <span class="nc">String</span> <span class="n">var2</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">marca</span> <span class="o">=</span> <span class="n">var1</span><span class="o">;</span> <span class="c1">//asignamos las entradas a los atributos.</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">color</span> <span class="o">=</span> <span class="n">var2</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="c1">//Zona de declaracón de métodos</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">arrancar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche ha arrancado"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">avanzar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche avanza a una velocidad constante"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">acelerar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche acelera"</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apagar</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El coche se ha apagado"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">dimeColor</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// MÉTODO MAIN</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        
+        <span class="c1">//Creamos el objeto usando el construcor.</span>
+
+        <span class="nc">Coche</span> <span class="n">coche1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coche</span><span class="o">(</span><span class="s">"Porshe"</span><span class="o">,</span> <span class="s">"rojo"</span><span class="o">);</span>
+        
+        <span class="c1">// De esta forma asignamos los atributos al crear el objeto.</span>
+
+        <span class="c1">//UTILIZAMOS LOS MÉTODOS</span>
+
+        <span class="n">coche1</span><span class="o">.</span><span class="na">arrancar</span><span class="o">();</span> <span class="c1">//Este método nos mostrará en pantalla un mensaje.</span>
+        <span class="n">coche1</span><span class="o">.</span><span class="na">avanzar</span><span class="o">();</span> <span class="c1">//Este método nos mostrará en pantalla un mensaje.</span>
+
+    <span class="o">}</span>
+    
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Espero que esta “guía” les haya aclarado un poco mas las cosas.</p>
+
+:ET

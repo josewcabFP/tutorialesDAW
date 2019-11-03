@@ -1,0 +1,41 @@
+I"�<h1 id="introducción">Introducción</h1>
+
+<blockquote>
+  <p>Esta guía esta hecha para una distribución linux, sin embargo, las soluciones son muy parecidas para otras distribuciones.</p>
+</blockquote>
+
+<p>En algunas ocasiones (muy pocas) podemos tener un cuelgue de linux, sin embargo, a diferencia de windows, la solución de hacer un <strong>hard reset</strong> (presionar el boton de reset) puede tener consecuencias en nuestro sistema y en algunos casos la corrupción del disco, ya que, linux tiene una gestión distinta de los archivos y los procesos.</p>
+
+<p>Para evitar este problema, cuando tengamos un cuelgue debemos seguir estos pasos:</p>
+
+<h2 id="en-el-caso-del-cuelgue-de-un-programa">En el caso del cuelgue de un programa</h2>
+
+<ol>
+  <li>
+    <p>Presionaremos la combinación de teclas  <code class="highlighter-rouge"> alt + f2</code>   y escribiremos el comando   <code class="highlighter-rouge">gnome-system-monitor</code> .</p>
+  </li>
+  <li>
+    <p>En la nueva ventana seleccionaremos el proceso y daremos a <strong>finalizar proceso</strong>.</p>
+  </li>
+</ol>
+
+<h2 id="en-el-caso-de-cuelgue-absoluto">En el caso de cuelgue absoluto</h2>
+
+<ol>
+  <li>
+    <p>Presionaremos la combinación de teclas   <code class="highlighter-rouge">Alt + Impr Paint PetSis</code>   y mientras mantenemos esas teclas pulsadas presionamos lentamente  <code class="highlighter-rouge">R</code>  <code class="highlighter-rouge">E</code>  <code class="highlighter-rouge">I</code>  <code class="highlighter-rouge">S</code>  <code class="highlighter-rouge">U</code>  <code class="highlighter-rouge">B</code> .</p>
+  </li>
+  <li>
+    <p>Lo que hace cada tecla es:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> R - Pone el teclado en modo RAW.
+ E - Termina todos los procesos.
+ I - Mata todos los procesos.
+ S - Sincroniza el disco duro.
+ U - Desmonta los sistemas de ficheros.
+ B - Reinicia el ordenador.
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+:ET

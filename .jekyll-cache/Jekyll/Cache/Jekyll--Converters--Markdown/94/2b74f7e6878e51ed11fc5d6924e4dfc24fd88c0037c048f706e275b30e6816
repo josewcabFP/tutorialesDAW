@@ -1,0 +1,50 @@
+I""<h1 id="tutorial-crear-un-acceso-directo-en-linux">Tutorial: Crear un acceso directo en linux</h1>
+
+<p>Muchas veces en linux, cuando instalamos una nueva aplicación o bien cuando tenemos una aplicación propia, no tenemos la opción de crear un acceso directo a ella. En este tutorial veremos como solucionar este problema de una manera rápida y sencilla.</p>
+
+<h2 id="la-carpeta-usrshareapplications">La carpeta /usr/share/applications</h2>
+
+<p>Esta carpeta contiene los archivos de cada uno de los lanzadores de las aplicaciones en nuestro equipo. Para crear un nuevo acceso directo a alguna aplicación debemos guardar el lanzador en esta ubicación.</p>
+
+<h2 id="creando-archivo-lanzador">Creando archivo lanzador</h2>
+
+<p>Debemos crear este archivo con extension <strong>.desktop</strong> para que sea reconocido, y dentro del archivo debemos escribir las siguientes lineas:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Desktop Entry]
+
+<span class="nv">Name</span><span class="o">=</span>Nombre del programa
+<span class="nv">Comment</span><span class="o">=</span>Comentario sobre el programa
+<span class="nv">Exec</span><span class="o">=</span>/home/usuario/carpetaPrograma/bin/programa
+<span class="nv">Icon</span><span class="o">=</span>/home/usuario/Images/iconoPrograma
+<span class="nv">Terminal</span><span class="o">=</span><span class="nb">false
+</span><span class="nv">Type</span><span class="o">=</span>Application
+
+</code></pre></div></div>
+<p><strong>Veamos un ejemplo para ver mas claramente este concepto:</strong></p>
+
+<p>Tengo un Shell Script llamado <code class="highlighter-rouge">programa.sh</code> el cual ejecuto a menudo con el comando <code class="highlighter-rouge">sudo ./programa.sh</code> por lo que quiero crear un acceso directo a él (estos pasos pueden valer para cualquier tipo de aplicacción).</p>
+
+<ol>
+  <li>
+    <p>Creo mi entrada de lanzador en la carpeta <strong>applications</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /usr/share/applications/programa.desktop
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Dentro del archivo escribo la configuración del lanzador:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">[</span>Desktop Entry]
+    
+ <span class="nv">Name</span><span class="o">=</span>Programa
+ <span class="nv">Comment</span><span class="o">=</span>Ejecuta mi programa personal
+ <span class="nv">Exec</span><span class="o">=</span>/home/jose/MisProgramas/programa.sh
+ <span class="nv">Icon</span><span class="o">=</span>/home/jose/Images/iconoPrograma.png
+ <span class="nv">Terminal</span><span class="o">=</span><span class="nb">false
+ </span><span class="nv">Type</span><span class="o">=</span>Application
+</code></pre></div>    </div>
+
+    <p>Podemos poner <code class="highlighter-rouge">Terminal=true</code> solo si queremos ejecutar algo como super usuario.</p>
+  </li>
+</ol>
+:ET

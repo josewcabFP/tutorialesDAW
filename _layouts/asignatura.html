@@ -28,7 +28,7 @@
 
         {%for post in site.posts%}
         {% if post.asignatura == page.short_name %}
-        <li><a href="{{site.baseurl}}{{post.url}}">{{post.name}}</a></li>
+        <li class="links-gh"><a href="{{site.baseurl}}{{post.url}}">{{post.name}}</a></li>
         {% endif %}
         {% endfor %}
       </ul>

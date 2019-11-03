@@ -1,0 +1,79 @@
+I"�<h1 id="introducción">Introducción</h1>
+
+<p>Normalmente al instalar apache2 tenemos una carpeta <strong>por defecto</strong> para colocar los archivos de nuestra página web. Este archivo se encuentra en:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/var/www/html
+</code></pre></div></div>
+
+<p>En esta guía veremos como cambiar esta ruta a una personalizada. Para nuestro ejemplo usaremos la ruta /home/daw1/web</p>
+
+<p>Para este fin seguiremos los siguientes pasos:</p>
+
+<ol>
+  <li>
+    <p>Iremos a la carpeta que contiene el archivo de configuración de nuestro sitio <strong>por defecto</strong>, normalmente el comando sera:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> /etc/apache2/sites-avaiable
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Una vez alli haremos una copia del archivo de configuración para crear el nuestro a partir de este:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo cp </span>000-default.conf mi-sitio.conf
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>A continuación editaremos el archivo copia, en este caso <strong>” mi-sitio.conf “</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano mi-sitio.conf
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Una vez dentro borraremos la linea :</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> DocumentRoot /var/www/html
+</code></pre></div>    </div>
+
+    <p>Y la cambiaremos por:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> DocumentRoot /home/daw1/web
+</code></pre></div>    </div>
+
+    <p>Por utlimo añadiremos estas lineas extra:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &lt;Directory /home/daw1/web&gt;
+ Require all granted
+ &lt;/Directory&gt;
+</code></pre></div>    </div>
+    <p>Guardamos los cambios.</p>
+  </li>
+  <li>
+    <p>Ahora debemos decirle a <strong>apache</strong> que el archivo de configuración de nuestra página sera el nuevo archivo, para esto usarmos los comandos <strong>a2dissite</strong> y <strong>a2ensite</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>a2dissite 000-default <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>a2ensite mi-sitio
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>a2dissite</strong> : Sirve para decirle al servidor apache que daremos de baja al archvio de configuracion dado.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>a2ensite</strong> : Sirve para decirle al servidor apache que daremos de alta al archivo de configuración dado.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>&amp;&amp;</strong> : AND lógico ejecutara el comando de la derecha, solo si se a ejecutado satisfactoriamente el comando de la izquierda</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>Por último reiniciaremos el servicio apache2:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>service apache2 reload
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+:ET

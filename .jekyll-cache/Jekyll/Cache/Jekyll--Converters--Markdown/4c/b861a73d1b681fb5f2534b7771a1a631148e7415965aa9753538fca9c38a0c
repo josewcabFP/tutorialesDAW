@@ -1,4 +1,4 @@
-I"�)<h1 id="guia-de-configuración-de-cliente-ssh-para-conexión-a-github">Guia de configuración de cliente SSH para conexión a Github</h1>
+I"�)<h1 id="introducción">Introducción</h1>
 
 <blockquote>
   <p>Esta guía esta hecha para la conexión desde un ordenador con un sistema operativo linux. Windows no tiene las librerias SSH por defecto y necesita programas como <strong>Putty</strong>.</p>
@@ -140,17 +140,17 @@
   <li>
     <p>A continuación iremos a nuestra cuenta de Github e iremos al menu de ajustes de la cuenta (en la parte superior derecha).</p>
 
-    <p><img src="recursos/ssh_git/GH1.png" alt="Github settings" /></p>
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH1.png" alt="Github settings" /></p>
   </li>
   <li>
     <p>En el panel de ajustes buscaremos <strong>SSH and GPG keys</strong>.</p>
 
-    <p><img src="recursos/ssh_git/GH2.png" alt="Github ssh &amp; gpg keys" /></p>
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH2.png" alt="Github ssh &amp; gpg keys" /></p>
   </li>
   <li>
     <p>Daremos clic a <strong>new SSH key</strong>.</p>
 
-    <p><img src="recursos/ssh_git/GH3.png" alt="Github new key" /></p>
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH3.png" alt="Github new key" /></p>
   </li>
   <li>
     <p>En el titulo pondremos algo identificativo para nuestra clave SSH.</p>
@@ -158,17 +158,17 @@
   <li>
     <p>Pegaremos la clave SSH en el campo de clave (key)</p>
 
-    <p><img src="recursos/ssh_git/GH4.png" alt="Github key field" /></p>
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH4.png" alt="Github key field" /></p>
   </li>
   <li>
     <p>Daremos a <strong>Add SSH key</strong></p>
 
-    <p><img src="recursos/ssh_git/GH5.png" alt="Github agree" /></p>
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH5.png" alt="Github agree" /></p>
   </li>
   <li>
     <p>Github nos solicitará logear para aplicar la clave.</p>
 
-    <p><img src="recursos/ssh_git/GH6.png" alt="Github confirm" /></p>
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/GH6.png" alt="Github confirm" /></p>
   </li>
   <li>
     <p>Comprobamos la conexión SSH</p>
@@ -195,12 +195,12 @@
   <li>
     <p>Primero debemos saber cual es la dirección para conexiones SSH con el repositorio, por lo que en nuestra cuenta de Github buscaremos el repositorio y en la opción de <strong>Clone or download</strong>, daremos a <strong>Use SSH</strong></p>
 
-    <p><img src="recursos/ssh_git/use_ssh.png" alt="Use SSH" /></p>
+    <p><img src="/tutoriales_3//assets/recursos/ssh_git/use_ssh.png" alt="Use SSH" /></p>
   </li>
   <li>
     <p>Copiaremos la dirección que nos da para la conexión SSH.</p>
 
-    <p><img src="recursos/ssh_git/linkGithub.png" alt="link SSH" /></p>
+    <p><img src="/tutoriales_3//recursos/ssh_git/linkGithub.png" alt="link SSH" /></p>
   </li>
   <li>
     <p>Usaremos el link con el comando <strong>remote</strong> de <em>git</em>.</p>

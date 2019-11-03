@@ -49,7 +49,7 @@
         "bundle exec jekyll serve --baseurl '/tutoriales_3/' o el nombre de la carpeta contenedora del proyecto -->
         
         {% for asignatura in site.asignaturas %}
-          <li><a href="{{site.baseurl}}{{asignatura.url}}">{{asignatura.name}}</a></li>
+          <li class="links-gh"><a href="{{site.baseurl}}{{asignatura.url}}">{{asignatura.name}}</a></li>
         {% endfor %}
         </ul>
 
