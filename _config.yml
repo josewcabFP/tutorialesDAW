@@ -4,6 +4,9 @@ show_downloads: true
 google_analytics:
 theme: jekyll-theme-cayman
 
+markdown: kramdown
+baseurl: /tutorialesDAW
+
 collections:
   asignaturas:
     output: true
