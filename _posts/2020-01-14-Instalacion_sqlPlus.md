@@ -41,7 +41,7 @@ C:\>cd crea_tablas
 - Una vez dentro de la carpeta ejecutamos el siguiente comando:
 
 ```bash
-C:\crea_tablas>sqlplus "\as SYSDBA"
+C:\crea_tablas>sqlplus "/as SYSDBA"
 
 Este comando nos permite ejecutar la base de datos en modo administrador.
 ```
