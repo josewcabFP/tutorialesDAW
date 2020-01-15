@@ -14,7 +14,7 @@ Antes de empezar debemos descargar los siguientes archivos:
 
 - Archivos de configuración automática, [Aquí]({{site.baseurl}}/assets/recursos/SqlPlus_archivos/crea_tablas.rar)
 
-# Instación de Sql-Plus
+# Instalación de Sql-Plus
 
 - Descomprimimos el archivo que hemos descargado, y accedemos a la carpeta **DISK1**, una vez dentro ejecutamos el archivo **setup**.
 
@@ -62,6 +62,6 @@ Este comando nos permite ejecutar la base de datos en modo administrador.
 
 - Con esto ya tendremos el entorno listo para trabajar.
 
-Espero que esta guía os sea de utilidad, saludos.
+Espero que esta guía os haya sido de utilidad, saludos.
 
 
